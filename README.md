@@ -1,25 +1,25 @@
 # Ember-cli-setting-factorizer
 
-This README outlines the details of collaborating on this Ember addon.
+This addon is an attempt to introduce a nice way to avoid component invocation that are 3 or 4 lines long.
+The basic idea is to seamlessly allow to use a `setting` parameter to gather all the other one on a component or to bind them one by one.
 
-## Installation
+## The idea
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+When developing with Ember.js I often find myself having components nested within components themselves nested within components...
+I was unfortunately unable to find a nice solution to allow to change some of the deeply embedded from the outmost template.
 
-## Running
+So I often end up with a `something.hbs` that looks like that:
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+    {{some-feature-full-component
+        directParameter=model.something
+        oneLevelDeepComponentOptionalClass= "something-class",
+        ...
+        ...
+        //Picture 5 or 6 parameters here
+    }}
 
-## Running Tests
+Most of time, these nested parameters are merely cosmetic stuff... So what if we could define in `something.js` a parameter object like this:
 
-* `ember test`
-* `ember test --server`
+    parameters: {
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+    }
